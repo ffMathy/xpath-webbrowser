@@ -12,15 +12,6 @@ using AgilityHtmlDocument = HtmlAgilityPack.HtmlDocument;
 public class XPathWebBrowser : WebBrowser
 {
 
-    private string _documentText;
-
-    //HACK: bad idea.
-    public new string DocumentText
-    {
-        get { return _documentText; }
-        set { _documentText = base.DocumentText = value; }
-    }
-
     public IEnumerable<HtmlElement> FindElements(string rootXPathQuery)
     {
         var htmlDocument = new AgilityHtmlDocument();
