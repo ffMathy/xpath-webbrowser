@@ -7,8 +7,8 @@
     <ProjectGuid>{439F2688-C5FA-433F-98AA-AAA89786D9C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XPathWebBrowser</RootNamespace>
-    <AssemblyName>XPathWebBrowser</AssemblyName>
+    <RootNamespace>XPathWebBrowserControl</RootNamespace>
+    <AssemblyName>XPathWebBrowserControl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

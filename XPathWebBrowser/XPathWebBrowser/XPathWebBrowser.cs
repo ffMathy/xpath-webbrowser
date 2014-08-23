@@ -11,6 +11,16 @@ using AgilityHtmlDocument = HtmlAgilityPack.HtmlDocument;
 // ReSharper disable once CheckNamespace
 public class XPathWebBrowser : WebBrowser
 {
+
+    private string _documentText;
+
+    //HACK: bad idea.
+    public new string DocumentText
+    {
+        get { return _documentText; }
+        set { _documentText = base.DocumentText = value; }
+    }
+
     public IEnumerable<HtmlElement> FindElements(string rootXPathQuery)
     {
         var htmlDocument = new AgilityHtmlDocument();
@@ -36,17 +46,32 @@ public class XPathWebBrowser : WebBrowser
     private HtmlElement FindFromNode(HtmlNode node)
     {
         var parent = node.ParentNode;
-        if (string.Equals(node.Name, "BODY", StringComparison.OrdinalIgnoreCase))
+
+        var childNodesWithSameType =
+            parent.ChildNodes.Where(n => string.Equals(n.Name, node.Name, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+        var parentOffset = childNodesWithSameType.IndexOf(node);
+
+        HtmlElement parentResult;
+        if (string.Equals(parent.Name, "BODY", StringComparison.OrdinalIgnoreCase))
         {
             Debug.Assert(Document != null, "Document != null");
-            return Document.Body;
+            parentResult = Document.Body;
         }
         else
         {
-            var parentOffset = parent.ChildNodes.IndexOf(node);
-            var parentResult = FindFromNode(parent);
-
-            return parentResult.All[parentOffset];
+            parentResult = FindFromNode(parent);
         }
+
+        Debug.Assert(parentResult != null, "parentResult != null");
+
+        var childElementsWithSameType = parentResult
+            .All
+            .Cast<HtmlElement>()
+            .Where(e => string.Equals(e.TagName, node.Name, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        return childElementsWithSameType[parentOffset];
     }
+
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPathWebBrowser", "XPathWebBrowser\XPathWebBrowser.csproj", "{439F2688-C5FA-433F-98AA-AAA89786D9C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPathWebBrowser.Tests", "XPathWebBrowser.Tests\XPathWebBrowser.Tests.csproj", "{C3CDD0F8-107F-4858-AA48-BEB0890A4D10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{439F2688-C5FA-433F-98AA-AAA89786D9C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{439F2688-C5FA-433F-98AA-AAA89786D9C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{439F2688-C5FA-433F-98AA-AAA89786D9C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3CDD0F8-107F-4858-AA48-BEB0890A4D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3CDD0F8-107F-4858-AA48-BEB0890A4D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3CDD0F8-107F-4858-AA48-BEB0890A4D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3CDD0F8-107F-4858-AA48-BEB0890A4D10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
