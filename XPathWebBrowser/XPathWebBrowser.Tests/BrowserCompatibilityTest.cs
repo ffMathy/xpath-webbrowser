@@ -48,7 +48,6 @@ namespace XPathWebBrowserComponent.Tests
                 Thread.Sleep(1);
             }
 
-
         }
     }
 }
