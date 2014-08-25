@@ -15,7 +15,18 @@ public class XPathWebBrowser : WebBrowser
     public IEnumerable<HtmlElement> FindElements(string rootXPathQuery)
     {
         var htmlDocument = new AgilityHtmlDocument();
-        htmlDocument.LoadHtml(DocumentText);
+
+        var documentRootNodes = Document.All;
+        var documentHtml = string.Empty;
+        foreach (HtmlElement node in documentRootNodes)
+        {
+            if (node.Parent == null)
+            {
+                documentHtml = node.OuterHtml;
+            }
+        }
+
+        htmlDocument.LoadHtml(documentHtml);
 
         var documentNode = htmlDocument.DocumentNode;
         if (documentNode != null)
