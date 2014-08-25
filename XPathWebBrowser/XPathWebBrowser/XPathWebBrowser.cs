@@ -16,7 +16,7 @@ public class XPathWebBrowser : WebBrowser
     {
         var htmlDocument = new AgilityHtmlDocument();
 
-        var documentRootNodes = Document.All;
+        var documentRootNodes = Document.GetElementsByTagName("*");
         var documentHtml = string.Empty;
         foreach (HtmlElement node in documentRootNodes)
         {

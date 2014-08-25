@@ -36,6 +36,13 @@ namespace XPathWebBrowserComponent.Tests
                     .ToArray();
                 Assert.AreEqual(2, elements.Length);
 
+                browser.Document.Write("<div class='dynamic'>Hello world from dynamic content!</div>");
+
+                var dynamicElements = browser
+                    .FindElements("//*[@class='dynamic']")
+                    .ToArray();
+                Assert.AreEqual(1, dynamicElements.Length);
+
                 done = true;
 
             };
