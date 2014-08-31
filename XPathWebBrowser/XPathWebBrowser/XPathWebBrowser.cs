@@ -12,21 +12,48 @@ using AgilityHtmlDocument = HtmlAgilityPack.HtmlDocument;
 public class XPathWebBrowser : WebBrowser
 {
 
+    public new string DocumentText
+    {
+        get
+        {
+
+            var documentRootNodes = Document.GetElementsByTagName("*");
+            var documentHtml = string.Empty;
+            foreach (HtmlElement node in documentRootNodes)
+            {
+                if (node.Parent == null)
+                {
+                    documentHtml += node.OuterHtml;
+                }
+            }
+
+            foreach (HtmlWindow frame in Document.Window.Frames)
+            {
+                var frameRootNodes = frame.Document.GetElementsByTagName("*");
+                var frameHtml = string.Empty;
+                foreach (HtmlElement node in frameRootNodes)
+                {
+                    if (node.Parent == null)
+                    {
+                        frameHtml += node.OuterHtml;
+                    }
+                }
+
+                documentHtml += frameHtml;
+            }
+
+            return documentHtml;
+        }
+        set
+        {
+            base.DocumentText = value;
+        }
+    }
+
     public IEnumerable<HtmlElement> FindElements(string rootXPathQuery)
     {
         var htmlDocument = new AgilityHtmlDocument();
-
-        var documentRootNodes = Document.GetElementsByTagName("*");
-        var documentHtml = string.Empty;
-        foreach (HtmlElement node in documentRootNodes)
-        {
-            if (node.Parent == null)
-            {
-                documentHtml = node.OuterHtml;
-            }
-        }
-
-        htmlDocument.LoadHtml(documentHtml);
+        htmlDocument.LoadHtml(DocumentText);
 
         var documentNode = htmlDocument.DocumentNode;
         if (documentNode != null)
